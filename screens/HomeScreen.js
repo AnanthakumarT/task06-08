@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View,AsyncStorage
 } from 'react-native';
 
 import { Table, Row, TableWrapper,Rows } from 'react-native-table-component';
@@ -19,19 +19,24 @@ export default class HomeScreen extends React.Component{
       widthArr: [40, 60, 80, 100, 120,100,100,100],
       tableHead: ['Name', 'Age', 'p.no', 'Gender','Address','pincode','state','nationality'],
       tableData: [
-        ['anand', '22', '9080948631', 'Male','xxx,yyy','23454','tamilnadu','indian'],
+        ['user_name', '22', '9080948631', 'Male','xxx,yyy','23454','tamilnadu','indian'],
         ['anand', '22', '9080948631', 'Male','xxx,yyy','23454','tamilnadu','American']
 
        
       ]
     }
   }
- 
+
  
   
   render(){
     const state = this.state;
-
+    const { navigation } = this.props;  
+        const user_name = navigation.getParam('userName', 'NO-User');  
+        const Age = navigation.getParam('Age', 'NO-User');     
+        const Gender = navigation.getParam('Gender', 'NO-User');  
+        const PNO = navigation.getParam('PNO', 'NO-User');  
+        const Address = navigation.getParam('Address', 'NO-User');  
   return (
     <View style={styles.container}>
         <ScrollView horizontal={true}>
@@ -42,6 +47,17 @@ export default class HomeScreen extends React.Component{
 
    
     </ScrollView>
+              <View style={{marginLeft:5,marginTop:5}}>
+                
+                <Text style={{margin:15}} >User Name: {JSON.stringify(user_name)}</Text>  
+                <Text  style={{margin:15,}} >Age: {JSON.stringify(Age)}</Text>  
+                <Text  style={{margin:15}} >Gender: {JSON.stringify(Gender)}</Text>  
+                <Text  style={{margin:15}} >PNO: {JSON.stringify(PNO)}</Text>  
+                <Text  style={{margin:15}} >Address: {JSON.stringify(Address)}</Text>  
+               
+                </View>
+               
+
   </View>
    
   );
